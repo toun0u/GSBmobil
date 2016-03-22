@@ -61,11 +61,11 @@ angular.module('starter.services', [])
   }]
   return{
     byName: function(name, pwd){
-      for(var user in users){
-        console.log(user);
-        if(user.email == mail && user.pwd == pwd){
+      for(var i = 0; i<users.length; i++){
+        console.log(users[i]);
+        if(users[i].email == name && users[i].pwd == pwd){
           console.log('raaaa');
-          return user;
+          return users[i];
         }
       }
     }

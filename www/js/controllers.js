@@ -5,7 +5,7 @@ angular.module('starter.controllers', [])
 .controller('LogCtrl', function($scope, User){
   $scope.connexion = function($scope){
     var user = User.byName(mail.value, pwd.value);
-    //console.log(user.id);
+    console.log(user);
   }
 })
 .controller('ChatsCtrl', function($scope, Chats) {
