@@ -9,9 +9,11 @@
         <span class="input-label">Mot de passe</span>
         <input id="pwd" type="password" placeholder="Mot de passe">
       </label>
+      <ion-checkbox id="keepid" ng-model="isChecked.value">Retenir mes identifiants</ion-checkbox>
       <button ng-Click='connexion(loginForm)' class="button button-block button-positive">
       Connexion
       </button>
+      <tt id="ischeck" hidden>{{isChecked.value}}</tt>  
     </div>
   </ion-content>
 </ion-view>

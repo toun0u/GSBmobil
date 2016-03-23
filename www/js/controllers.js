@@ -2,10 +2,28 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('LogCtrl', function($scope, User){
+.controller('LogCtrl', function($scope, User, $location){
+  $scope.isChecked = {
+    value : false 
+  };
+  if(window.localStorage.getItem("user"))
+  {
+    var user = window.localStorage.getItem("user");
+    var log = user.split("/");
+    document.getElementById('mail').value=log[0];
+    document.getElementById('pwd').value=log[1];
+  }
+  window.localStorage.clear();
+  
   $scope.connexion = function($scope){
     var user = User.byName(mail.value, pwd.value);
     console.log(user);
+    console.log(ischeck.innerHTML);
+    var ok = ischeck.innerHTML;
+    if(ok == 'true' && user)
+    {
+      window.localStorage.setItem('user',mail.value+'/'+pwd.value);
+    } 
   }
 })
 .controller('ChatsCtrl', function($scope, Chats) {
