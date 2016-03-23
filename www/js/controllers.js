@@ -3,6 +3,8 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope) {})
 
 .controller('LogCtrl', function($scope, User, $location){
+  console.log($location.absUrl());
+  console.log($location.url());
   $scope.isChecked = {
     value : false 
   };
@@ -13,18 +15,26 @@ angular.module('starter.controllers', [])
     document.getElementById('mail').value=log[0];
     document.getElementById('pwd').value=log[1];
   }
-  window.localStorage.clear();
+  //window.localStorage.clear();
   
-  $scope.connexion = function($scope){
+  $scope.connexion = function(){
     var user = User.byName(mail.value, pwd.value);
-    console.log(user);
-    console.log(ischeck.innerHTML);
     var ok = ischeck.innerHTML;
-    if(ok == 'true' && user)
+    if(user)
     {
-      window.localStorage.setItem('user',mail.value+'/'+pwd.value);
+      if(ok == 'true')
+      {
+        window.localStorage.setItem('user',mail.value+'/'+pwd.value);
+      }
+      $location.path('/event').replace();
+      //$scope.$apply();
     } 
   }
+})
+
+.controller('eventCtrl', function($scope){
+  var button = document.getElementById('parambutton');
+  button.removeAttributeNode('hidden');
 })
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
