@@ -1,16 +1,19 @@
 <ion-view view-title="Evénements à venir">
   <ion-content class="padding">
-    <div class="card">
-  <div class="item item-divider">
-    date de l'event
-  </div>
-  <div class="item item-text-wrap">
-    description
-  </div>
-  <div class="item item-divider">
-    <button class='button button-small button-positive'>Je participe</button>
-    <button class='button button-small button-assertive'>Je ne participe pas</button>
-  </div>
+  <div ng-repeat="event in events" class="card">
+    <div class="item item-divider">
+      {{event.type}}
+    </div>
+    <div class="item item-text-wrap">
+      {{event.description}} </br>
+      Début: {{event.dateDebut}} - {{event.heureDebut}}</br>
+      Fin: {{event.dateFin}} - {{event.heureFin}} </br>
+      Lieu: {{event.lieu}}
+    </div>
+    <div class="item item-divider">
+      <button class='button button-small button-positive'>Je participe</button>
+      <button class='button button-small button-assertive' ng-click='refuser({{event.id}})'>Je ne participe pas</button>
+    </div>
 </div>
   </ion-content>
 </ion-view>

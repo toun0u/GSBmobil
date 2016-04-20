@@ -32,9 +32,22 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('eventCtrl', function($scope){
-  var button = document.getElementById('parambutton');
-  button.removeAttributeNode('hidden');
+.controller('eventCtrl', function($scope, Event, $ionicModal){
+  $scope.events = Event.All();
+  $ionicModal.fromTemplateUrl('modalsTemplates/refusModal.html',{
+    scope:$scope
+  }).then(function(modal){
+    $scope.modal=modal;
+  });
+  
+  $scope.refuser=function(id){
+    console.log(id);
+    $scope.leEvent=id;
+    $scope.modal.show();
+  }
+  $scope.closeModal=function(){
+    $scope.modal.hide();
+  }
 })
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called

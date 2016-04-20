@@ -1,0 +1,23 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Vous allez nous manquer :( {{leEvent}}</h1>
+    <div class="button">
+    <button class="button button-clear close" ng-click="closeModal()">
+    	<i class="icon ion-android-cancel"></i>
+    </button>
+  	</div>
+  </ion-header-bar>
+  <ion-content>
+  	<div class="card">
+  		<div class="item item-divider">
+  			Précisez la raison de votre indisponibilité
+  		</div>
+  		<div class='item item-text-wrap'>
+  			<input type="text" id="reason" size="100">
+  		</div>
+  		<div class="item item-divider">
+  			<button class='button button-small button-positive'>Valider</button>
+  		</div>
+  	</div>
+  </ion-content>
+</ion-modal-view>

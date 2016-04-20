@@ -41,4 +41,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     controller: 'eventCtrl'
   })
 
+  $urlRouterProvider.otherwise('/login');
+
 });
