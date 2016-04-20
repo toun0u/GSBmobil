@@ -3,8 +3,8 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope) {})
 
 .controller('LogCtrl', function($scope, User, $location){
-  console.log($location.absUrl());
-  console.log($location.url());
+  //console.log($location.absUrl());
+  //console.log($location.url());
   $scope.isChecked = {
     value : false 
   };

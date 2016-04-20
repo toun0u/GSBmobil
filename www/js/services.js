@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('User', function(){
+.factory('User', function($http, constants){
   var users = [{
     id:0,
     email: 'toto@toto.fr',
@@ -12,14 +12,29 @@ angular.module('starter.services', [])
   }]
   return{
     byName: function(name, pwd){
-      for(var i = 0; i<users.length; i++){
+      $http({
+        method: 'POST',
+        url: constants.url + "/index.php",
+        data: {
+          mail: name,
+          mdp: pwd
+        }
+      }).then(function successCallback(response){
+        console.log('success');
+      }, function errorCallback(response){
+        console.log('NUL');
+      })
+
+
+
+      /*for(var i = 0; i<users.length; i++){
         //console.log(users[i]);
         if(users[i].email == name && users[i].pwd == pwd){
           //console.log(name);
           //console.log(pwd);
           return users[i];
         }
-      }
+      }*/ 
     }
   }
 })
