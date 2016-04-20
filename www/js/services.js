@@ -12,14 +12,17 @@ angular.module('starter.services', [])
   }]
   return{
     byName: function(name, pwd){
-      $http({
-        method: 'POST',
+      var config = {
+        method: 'GET',
         url: constants.url + "/index.php",
         data: {
-          mail: name,
-          mdp: pwd
+          name: name,
+          pwd: pwd
         }
-      }).then(function successCallback(response){
+      }
+      //console.log(config);
+      var response = $http(config);
+      response.then(function successCallback(response){
         console.log('success');
       }, function errorCallback(response){
         console.log('NUL');
