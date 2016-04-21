@@ -20,6 +20,7 @@ angular.module('starter.controllers', [])
   $scope.connexion = function(){
     var user = User.byName(mail.value, pwd.value);
     var ok = ischeck.innerHTML;
+    console.log(user);
     if(user)
     {
       if(ok == 'true')

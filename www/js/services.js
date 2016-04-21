@@ -1,10 +1,10 @@
 angular.module('starter.services', [])
 
-.factory('User', function($http, constants){
+.factory('User', function($http, constants, $q){
   var users = [{
     id:0,
-    email: 'toto@toto.fr',
-    pwd: 'toto'
+    email: 'totodepuis@gmail.com',
+    pwd: 'azerty'
   }, {
     id:1,
     email: 'titi@titi.fr',
@@ -12,10 +12,11 @@ angular.module('starter.services', [])
   }]
   return{
     byName: function(name, pwd){
+      var deferred = $q.defer();
       var config = {
         method: 'GET',
         url: constants.url + "/index.php",
-        data: {
+        params: {
           name: name,
           pwd: pwd
         }
@@ -24,9 +25,16 @@ angular.module('starter.services', [])
       var response = $http(config);
       response.then(function successCallback(response){
         console.log('success');
+        deferred.resolve(response);
+        console.log(deferred.promise.value);
+        if(response.data[0][0] !=0){
+          return true;
+        }else{
+          return false;
+        }
       }, function errorCallback(response){
-        console.log('NUL');
-      })
+        console.log('NULL');
+      });
 
 
 
@@ -37,7 +45,7 @@ angular.module('starter.services', [])
           //console.log(pwd);
           return users[i];
         }
-      }*/ 
+      }*/
     }
   }
 })
