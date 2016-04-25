@@ -6,7 +6,7 @@ angular.module('starter.services', [])
       var deferred = $q.defer();
       var config = {
         method: 'GET',
-        url: constants.url + "/index.php",
+        url: constants.url + "/user.php",
         params: {
           name: name,
           pwd: pwd
@@ -25,7 +25,7 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('Event', function(){
+.factory('Event', function($http, constants, $q){
   var event = [{
     id:1,
     lieu: 'St Malo',
@@ -49,7 +49,20 @@ angular.module('starter.services', [])
   }]
   return{
     All: function(){
-      return event;
+      var deferred = $q.defer();
+      var config = {
+        method: 'GET',
+        url: constants.url + "/user.php",
+      }
+      //console.log(config);
+      var response = $http(config);
+      response.then(function successCallback(response){
+        console.log('success');
+        deferred.resolve(response);
+      }, function errorCallback(response){
+        console.log('NULL');
+      })
+      return deferred.promise;
     }
   }
 });
