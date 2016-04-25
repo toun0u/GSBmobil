@@ -1,7 +1,5 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
-
 .controller('LogCtrl', function($scope, User, $location){
   //console.log($location.absUrl());
   //console.log($location.url());
@@ -21,15 +19,17 @@ angular.module('starter.controllers', [])
     var user = User.byName(mail.value, pwd.value);
     var ok = ischeck.innerHTML;
     console.log(user);
-    if(user)
-    {
-      if(ok == 'true')
-      {
-        window.localStorage.setItem('user',mail.value+'/'+pwd.value);
-      }
+    user.then(function(){
+      if(user.$$state.value.data[0][0] !=0){
+        if(ok == 'true')
+        {
+         window.localStorage.setItem('user',mail.value+'/'+pwd.value);
+        }
       $location.path('/event').replace();
-      //$scope.$apply();
-    } 
+      }else{
+        console.log('utilisateur non valide');
+      }
+    })
   }
 })
 

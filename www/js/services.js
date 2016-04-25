@@ -1,15 +1,6 @@
 angular.module('starter.services', [])
 
 .factory('User', function($http, constants, $q){
-  var users = [{
-    id:0,
-    email: 'totodepuis@gmail.com',
-    pwd: 'azerty'
-  }, {
-    id:1,
-    email: 'titi@titi.fr',
-    pwd: 'titi'
-  }]
   return{
     byName: function(name, pwd){
       var deferred = $q.defer();
@@ -26,26 +17,10 @@ angular.module('starter.services', [])
       response.then(function successCallback(response){
         console.log('success');
         deferred.resolve(response);
-        console.log(deferred.promise.value);
-        if(response.data[0][0] !=0){
-          return true;
-        }else{
-          return false;
-        }
       }, function errorCallback(response){
         console.log('NULL');
-      });
-
-
-
-      /*for(var i = 0; i<users.length; i++){
-        //console.log(users[i]);
-        if(users[i].email == name && users[i].pwd == pwd){
-          //console.log(name);
-          //console.log(pwd);
-          return users[i];
-        }
-      }*/
+      })
+      return deferred.promise;
     }
   }
 })
