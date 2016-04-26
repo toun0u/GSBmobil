@@ -26,33 +26,12 @@ angular.module('starter.services', [])
 })
 
 .factory('Event', function($http, constants, $q){
-  var event = [{
-    id:1,
-    lieu: 'St Malo',
-    description: 'Venez nombreux',
-    dateDebut:'2015-02-11',
-    dateFin:'2015-02-11',
-    type:'Réunion',
-    User:'Jean-Charles',
-    heureDebut:'12:00',
-    heureFin:'16:00'
-  },{
-    id:2,
-    lieu: 'Paris',
-    description: 'un autre event',
-    dateDebut:'2015-02-11',
-    dateFin:'2015-02-11',
-    type:'Réunion',
-    User:'Jean-Hubert',
-    heureDebut:'17:00',
-    heureFin:'19:00'
-  }]
   return{
     All: function(){
       var deferred = $q.defer();
       var config = {
         method: 'GET',
-        url: constants.url + "/user.php",
+        url: constants.url + "/event.php",
       }
       //console.log(config);
       var response = $http(config);
@@ -63,6 +42,25 @@ angular.module('starter.services', [])
         console.log('NULL');
       })
       return deferred.promise;
-    }
+    },
+    Valider:function(id, idEvent){
+      var deferred = $q.defer();
+      var config = {
+        method: 'POST',
+        url: constants.url + "/participe.php",
+        params: {
+          idUser: id,
+          idEvent: id
+        }
+      }
+      var response = $http(config);
+      response.then(function(response){
+        console.log('success');
+        deferred.resolve(response);
+      }, function(response){
+        console.log('NULL');
+      })
+      return deferred.promise;
+    }  
   }
 });

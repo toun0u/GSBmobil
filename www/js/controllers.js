@@ -18,13 +18,14 @@ angular.module('starter.controllers', [])
   $scope.connexion = function(){
     var user = User.byName(mail.value, pwd.value);
     var ok = ischeck.innerHTML;
-    console.log(user);
+    //console.log(user);
     user.then(function(){
       if(user.$$state.value.data[0][0] !=0){
         if(ok == 'true')
         {
-         window.localStorage.setItem('user',mail.value+'/'+pwd.value);
+          window.localStorage.setItem('user',mail.value+'/'+pwd.value);
         }
+      window.localStorage.setItem('id', user.$$state.value.data[0]['id']);
       $location.path('/event').replace();
       }else{
         console.log('utilisateur non valide');
@@ -35,8 +36,14 @@ angular.module('starter.controllers', [])
 
 .controller('eventCtrl', function($scope, Event, $ionicModal){
   var event = Event.All();
+  //event=event.$$state.value.data[0][2];
   console.log(event);
-  $scope.events = Event.All();
+  event.then(function(){
+    $scope.events=event.$$state.value.data;
+  }, function(reason){
+    console.log=reason;
+  });
+
   $ionicModal.fromTemplateUrl('modalsTemplates/refusModal.html',{
     scope:$scope
   }).then(function(modal){
@@ -48,7 +55,14 @@ angular.module('starter.controllers', [])
     $scope.leEvent=id;
     $scope.modal.show();
   }
+
   $scope.closeModal=function(){
     $scope.modal.hide();
+  }
+
+  $scope.valider=function(idEvent){
+    var idUser = window.localStorage.getItem(id);
+    var res = Event.Valider(idUser, idEvent);
+    console.log(res);
   }
 });
