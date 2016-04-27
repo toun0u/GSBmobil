@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('LogCtrl', function($scope, User, $location){
+.controller('LogCtrl', function($scope, User, $location, $state){
   //console.log($location.absUrl());
   //console.log($location.url());
   $scope.isChecked = {
@@ -26,7 +26,8 @@ angular.module('starter.controllers', [])
           window.localStorage.setItem('user',mail.value+'/'+pwd.value);
         }
       window.localStorage.setItem('id', user.$$state.value.data[0]['id']);
-      $location.path('/event').replace();
+      $location.path('/tab/event').replace();
+      //$state.go('tab.event');
       }else{
         console.log('utilisateur non valide');
       }
@@ -34,12 +35,15 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('eventCtrl', function($scope, Event, $ionicModal,$timeout){
+.controller('eventCtrl', function($scope, Event, $ionicModal,$timeout, $state){
   var event = Event.All(window.localStorage.getItem("id"));
   //event=event.$$state.value.data[0][2];
   console.log(event);
   event.then(function(){
     $scope.events=event.$$state.value.data;
+    console.log($state.current);
+    //$state.go($state.current, {events: event}, {reload:true});
+    //$state.reload();
   }, function(reason){
     console.log=reason;
   });

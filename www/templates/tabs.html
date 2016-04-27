@@ -3,22 +3,39 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
+<!--
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <!-- Dashboard Tab -->
-  <ion-tab title="Accueil" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">
-    <ion-nav-view name="tab-dash"></ion-nav-view>
+  <!-- Already checked event
+  <ion-tab title="Mes évenements" icon-off="ion-android-calendar" icon-on="ion-android-calendar" href="#/tab/event">
+    <ion-nav-view name="tab-myEvent"></ion-nav-view>
   </ion-tab>
 
-  <!-- Chats Tab -->
-  <ion-tab title="A venir" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/chats">
-    <ion-nav-view name="tab-chats"></ion-nav-view>
+  <!-- Non checked event 
+  <ion-tab title="A venir" icon-off="ion-android-time" icon-on="ion-android-time" href="#/tab/event">
+    <ion-nav-view name="tab-toCome"></ion-nav-view>
   </ion-tab>
-
-  <!-- Account Tab -->
-  <ion-tab title="Profil" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
-    <ion-nav-view name="tab-account"></ion-nav-view>
-  </ion-tab>
-
-
 </ion-tabs>
+-->
+  <div class="tabs-striped tabs-color-positive">
+    <div class="tabs tabs-icon-top">
+      
+      <a class="tab-item active" href="#/tab/event">
+        <i class="icon ion-android-calendar"></i>
+        Mon agenda
+        <ion-nav-view name="tab-event"></ion-nav-view>
+      </a>
+      
+      <a class="tab-item" href="#/tab/incoming">
+        <i class="icon ion-android-time"></i>
+        Nouveaux évenements
+      </a>
+      
+      <a class="tab-item" href="#/tab/parametres">
+        <i class="icon ion-android-settings"></i>
+        Paramètres
+      </a>
+      
+    </div>
+  </div>
+  

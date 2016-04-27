@@ -37,10 +37,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     templateUrl: 'templates/login.html',
     controller: 'LogCtrl'
   })
-  .state('event',{
+  .state('tab',{
+    url: '/tab',
+    abstract: true,
+    templateUrl: 'templates/tabs.html'
+    //controller: 'eventCtrl'
+  })
+  .state('tab.event',{
     url: '/event',
-    templateUrl: 'templates/event.html',
-    controller: 'eventCtrl'
+    views: {
+      'tab-event': {
+        templateUrl: 'templates/event.html',
+        controller: "eventCtrl"
+      }
+    }
   })
 
   $urlRouterProvider.otherwise('/login');
