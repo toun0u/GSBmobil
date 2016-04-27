@@ -34,8 +34,8 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('eventCtrl', function($scope, Event, $ionicModal){
-  var event = Event.All();
+.controller('eventCtrl', function($scope, Event, $ionicModal,$timeout){
+  var event = Event.All(window.localStorage.getItem("id"));
   //event=event.$$state.value.data[0][2];
   console.log(event);
   event.then(function(){
@@ -49,20 +49,33 @@ angular.module('starter.controllers', [])
   }).then(function(modal){
     $scope.modal=modal;
   });
-  
+  //ouvre le modal de confirmation du refus
   $scope.refuser=function(id){
-    console.log(id);
+    //console.log(id);
     $scope.leEvent=id;
     $scope.modal.show();
   }
+  //valide le refus à la base de donnée
+  $scope.confirmerRefus= function(idEvent){
+    var idUser = window.localStorage.getItem('id');
+    var res = Event.Refuser(idUser, idEvent, reason.value);
+    $scope.message='Votre refus a été pris en compte';
+    $timeout(function(){
+      $scope.message=' ';
+      $scope.modal.hide()
+    }, 2500);
+ 
+  }
 
   $scope.closeModal=function(){
+    $scope.message=' ';
     $scope.modal.hide();
   }
 
   $scope.valider=function(idEvent){
-    var idUser = window.localStorage.getItem(id);
+    var idUser = window.localStorage.getItem('id');
+    //console.log(idUser);
     var res = Event.Valider(idUser, idEvent);
-    console.log(res);
+    //console.log(res);
   }
 });

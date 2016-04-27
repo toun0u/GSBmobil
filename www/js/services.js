@@ -18,7 +18,7 @@ angular.module('starter.services', [])
         console.log('success');
         deferred.resolve(response);
       }, function errorCallback(response){
-        console.log('NULL');
+        console.log('failed');
       })
       return deferred.promise;
     }
@@ -27,11 +27,14 @@ angular.module('starter.services', [])
 
 .factory('Event', function($http, constants, $q){
   return{
-    All: function(){
+    All: function(id){
       var deferred = $q.defer();
       var config = {
         method: 'GET',
         url: constants.url + "/event.php",
+        params:{
+          id: id
+        }
       }
       //console.log(config);
       var response = $http(config);
@@ -39,7 +42,7 @@ angular.module('starter.services', [])
         console.log('success');
         deferred.resolve(response);
       }, function errorCallback(response){
-        console.log('NULL');
+        console.log('failed');
       })
       return deferred.promise;
     },
@@ -50,7 +53,7 @@ angular.module('starter.services', [])
         url: constants.url + "/participe.php",
         params: {
           idUser: id,
-          idEvent: id
+          idEvent: idEvent
         }
       }
       var response = $http(config);
@@ -58,7 +61,27 @@ angular.module('starter.services', [])
         console.log('success');
         deferred.resolve(response);
       }, function(response){
-        console.log('NULL');
+        console.log('failed');
+      })
+      return deferred.promise;
+    },
+    Refuser:function(id, idEvent, Reason){
+      var deferred = $q.defer();
+      var config = {
+        method: 'POST',
+        url: constants.url + "/paparticipe.php",
+        params: {
+          idUser: id,
+          idEvent: idEvent,
+          reason: Reason
+        }
+      }
+      var response = $http(config);
+      response.then(function(response){
+        console.log('success');
+        deferred.resolve(response);
+      }, function(response){
+        console.log('failed');
       })
       return deferred.promise;
     }  
