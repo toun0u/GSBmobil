@@ -42,8 +42,6 @@ angular.module('starter.controllers', [])
   event.then(function(){
     $scope.events=event.$$state.value.data;
     console.log($state.current);
-    //$state.go($state.current, {events: event}, {reload:true});
-    //$state.reload();
   }, function(reason){
     console.log=reason;
   });
