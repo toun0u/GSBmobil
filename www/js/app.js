@@ -61,6 +61,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  .state('tab.param',{
+    url: '/param',
+    views:{
+      'tab-param': {
+        templateUrl: 'templates/param.html',
+        controller: 'paramCtrl'
+      }
+    }
+  })
 
   $urlRouterProvider.otherwise('/login');
 
