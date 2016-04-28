@@ -52,6 +52,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  .state('tab.new', {
+    url: '/incoming',
+    views: {
+      'tab-new': {
+        templateUrl: 'templates/new-event.html',
+        controller: 'eventCtrl'
+      }
+    }
+  })
 
   $urlRouterProvider.otherwise('/login');
 

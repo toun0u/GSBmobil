@@ -45,7 +45,8 @@ angular.module('starter.services', [])
         console.log('failed');
       })
       return deferred.promise;
-    },
+    },  
+
     Valider:function(id, idEvent){
       var deferred = $q.defer();
       var config = {
@@ -65,6 +66,7 @@ angular.module('starter.services', [])
       })
       return deferred.promise;
     },
+
     Refuser:function(id, idEvent, Reason){
       var deferred = $q.defer();
       var config = {
@@ -84,6 +86,25 @@ angular.module('starter.services', [])
         console.log('failed');
       })
       return deferred.promise;
-    }  
+    },
+
+    Incoming:function(id){
+      var deferred = $q.defer();
+      var config = {
+        method: 'GET',
+        url: constants.url + "/incoming.php",
+        params:{
+          id:id
+        }
+      }
+      var response = $http(config);
+      response.then(function(response){
+        console.log('success');
+        deferred.resolve(response);
+      }, function(response){
+        console.log('failed');
+      })
+      return deferred.promise;
+    }
   }
 });

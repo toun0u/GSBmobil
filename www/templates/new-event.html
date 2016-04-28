@@ -1,7 +1,6 @@
-
-<ion-view view-title="Mon agenda">
+<ion-view view-title="Evenements à venir">
   <ion-content class="padding">
-  <div ng-repeat="event in events" class="card">
+  <div ng-repeat="event in incoming" class="card">
     <div class="item item-divider">
       {{event.Libelle}}
     </div>
@@ -12,6 +11,8 @@
       Lieu: {{event.lieu}}
     </div>
     <div class="item item-divider">
+      <button class='button button-small button-positive' ng-click='valider({{event.id}})'>Je participe</button>
+      <button class='button button-small button-assertive' ng-click='refuser({{event.id}})'>Je ne participe pas</button>
     </div>
     {{message}}
   </div>
