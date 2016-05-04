@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('paramCtrl', function($scope, $state, Event){
+.controller('paramCtrl', function($scope, $state, Event, $location, $window){
   $scope.supprId = function(){
     window.localStorage.removeItem('id');
     window.localStorage.removeItem('user');
@@ -10,29 +10,8 @@ angular.module('starter.controllers', [])
     $state.go('login');
   }
   $scope.actualiser = function(){
-  var event = Event.All(window.localStorage.getItem("id"));
-  //récupération des Evenements auxquels l'utilisateurs à répondu
-  console.log(event);
-  event.then(function(){
-    $scope.events=event.$$state.value.data;
-    $scope.message= "";
-    if($scope.events.length == 0){
-      $scope.message = "vous n'avez pas d'événements à venir";
-    }
-    //console.log($scope.events.length);
-  }, function(reason){
-    console.log=reason;
-  });
-  //récupération est Evenements en attente de réponse;
-  var Incoming=Event.Incoming(window.localStorage.getItem('id'));
-    console.log(Incoming);
-    Incoming.then(function(){
-      $scope.incoming = Incoming.$$state.value.data;
-      $scope.message1="";
-      if($scope.incoming.length == 0){
-        $scope.message1 = "Pas d'évenements prévus";
-      }
-    });
+    $location.path('/tab/event');
+    $window.location.reload();    
   }
 })
 .controller('LogCtrl', function($scope, User, $location, $state){
@@ -70,7 +49,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('eventCtrl', function($scope, Event, $ionicModal,$timeout, $state){
+.controller('eventCtrl', function($scope, Event, $ionicModal,$timeout, $state, $window, $location){
   var event = Event.All(window.localStorage.getItem("id"));
   //récupération des Evenements auxquels l'utilisateurs à répondu
   console.log(event);
@@ -114,6 +93,8 @@ angular.module('starter.controllers', [])
     $timeout(function(){
       $scope.message=' ';
       $scope.modal.hide()
+      $location.path('/tab/new');
+      $window.location.reload(); 
     }, 2500);
  
   }
@@ -127,6 +108,8 @@ angular.module('starter.controllers', [])
     var idUser = window.localStorage.getItem('id');
     //console.log(idUser);
     var res = Event.Valider(idUser, idEvent);
+    $location.path('/tab/new');
+    $window.location.reload();
     //console.log(res);
   }
 });
