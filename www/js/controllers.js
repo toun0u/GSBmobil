@@ -89,18 +89,20 @@ angular.module('starter.controllers', [])
   $scope.confirmerRefus= function(idEvent){
     var idUser = window.localStorage.getItem('id');
     var res = Event.Refuser(idUser, idEvent, reason.value);
-    $scope.message='Votre refus a été pris en compte';
+    $scope.message2='Votre refus a été pris en compte';
     $timeout(function(){
-      $scope.message=' ';
-      $scope.modal.hide()
-      $location.path('/tab/new');
-      $window.location.reload(); 
-    }, 2500);
+      $scope.message2=' ';
+      $scope.modal.hide();
+      $timeout(function(){
+        $location.path('/tab/incoming');
+        $window.location.reload();
+      }, 500); 
+    }, 2000);
  
   }
 
   $scope.closeModal=function(){
-    $scope.message=' ';
+    $scope.message2=' ';
     $scope.modal.hide();
   }
 
@@ -108,7 +110,7 @@ angular.module('starter.controllers', [])
     var idUser = window.localStorage.getItem('id');
     //console.log(idUser);
     var res = Event.Valider(idUser, idEvent);
-    $location.path('/tab/new');
+    $location.path('/tab/incoming');
     $window.location.reload();
     //console.log(res);
   }
