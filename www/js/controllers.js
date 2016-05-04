@@ -114,4 +114,21 @@ angular.module('starter.controllers', [])
     $window.location.reload();
     //console.log(res);
   }
-});
+})
+.controller('tabCtrl', function($scope){
+/*
+  var notif = document.getElementById('new');
+  console.log(notif);
+  var notifi = angular.element(notif);
+  console.log(notifi);
+  notifi.parent().addClass('animated');
+  console.log(notifi.parent());
+  console.log(notifi);
+
+  //var notifi = angular.element(notif);
+  //notifi.addClass('animated');
+  /*var att = document.createAttribute('class');
+  att.value="notif";
+  notif.setAttributeNode(att);*/
+  //console.log(notifi);
+})

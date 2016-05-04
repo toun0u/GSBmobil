@@ -40,8 +40,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab',{
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
-    //controller: 'eventCtrl'
+    templateUrl: 'templates/tabs.html',
+    controller: 'tabCtrl'
   })
   .state('tab.event',{
     url: '/event',
